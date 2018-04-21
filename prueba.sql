@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-04-2018 a las 15:49:42
+-- Tiempo de generación: 21-04-2018 a las 19:49:05
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.3
 
@@ -35,6 +35,7 @@ CREATE TABLE `cliente` (
   `cl_nombre` varchar(100) NOT NULL,
   `cl_ape_pat` varchar(30) NOT NULL,
   `cl_ape_mat` varchar(30) NOT NULL,
+  `cl_mail` varchar(100) NOT NULL,
   `cl_fec_nac` date NOT NULL,
   `cl_lug_nac` varchar(30) NOT NULL,
   `cl_sexo` varchar(1) NOT NULL,

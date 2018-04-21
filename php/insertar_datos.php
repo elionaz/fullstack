@@ -47,6 +47,7 @@ include('conexion.php');
 $nombre=$_POST['nombre_user'];
 $ap_pat=$_POST['ap_user'];
 $ap_mat=$_POST['am_user'];
+$correo=$_POST['mail_user'];
 $fecha_nac=$_POST['nac_user'];
 $lugar_nac=$_POST['lnac_user'];
 $sexo=$_POST['sexo_user'];
@@ -58,8 +59,8 @@ $municipio=$_POST['municipio_user'];
 $colonia=$_POST['colonia_user'];
 
 //sentencia sql para insertar los datos del cliente a la bd
-$ins = "INSERT INTO cliente(cl_nombre, cl_ape_pat, cl_ape_mat, cl_fec_nac, cl_lug_nac, cl_sexo,	cl_cod_pos, cl_rfc,	cl_curp, cl_estado,	cl_municipio, cl_colonia) 
-VALUES('$nombre' , '$ap_pat' , '$ap_mat' , '$fecha_nac' , '$lugar_nac' , '$sexo' , '$codigo_pos' , '$rfc' , '$curp' , '$estado' , '$municipio' , '$colonia')";
+$ins = "INSERT INTO cliente(cl_nombre, cl_ape_pat, cl_ape_mat, cl_mail, cl_fec_nac, cl_lug_nac, cl_sexo,	cl_cod_pos, cl_rfc,	cl_curp, cl_estado,	cl_municipio, cl_colonia) 
+VALUES('$nombre' , '$ap_pat' , '$ap_mat' , '$correo' , '$fecha_nac' , '$lugar_nac' , '$sexo' , '$codigo_pos' , '$rfc' , '$curp' , '$estado' , '$municipio' , '$colonia')";
 	$result = $con -> query($ins);
     if (!$result) {
 		echo "<script type='text/javascript'>

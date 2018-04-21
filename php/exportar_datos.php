@@ -29,16 +29,17 @@ $objPHPExcel->getActiveSheet(0)
             ->setCellValue('A1', 'Id Cliente')
             ->setCellValue('B1', 'Nombre')
             ->setCellValue('C1', 'Apellido Paterno')
-            ->setCellValue('D1', 'Apellido Materno')
-            ->setCellValue('E1', 'Fecha de Nacimiento')
-            ->setCellValue('F1', 'Lugar de Nacimiento')
-            ->setCellValue('G1', 'Sexo')
-            ->setCellValue('H1', 'RFC')
-            ->setCellValue('I1', 'CURP')
-            ->setCellValue('J1', 'Codigo Postal')
-            ->setCellValue('K1', 'Estado')
-            ->setCellValue('L1', 'Municipio')
-            ->setCellValue('M1', 'Colonia');
+			->setCellValue('D1', 'Apellido Materno')
+			->setCellValue('E1', 'E-mail')
+            ->setCellValue('F1', 'Fecha de Nacimiento')
+            ->setCellValue('G1', 'Lugar de Nacimiento')
+            ->setCellValue('H1', 'Sexo')
+            ->setCellValue('I1', 'RFC')
+            ->setCellValue('J1', 'CURP')
+            ->setCellValue('K1', 'Codigo Postal')
+            ->setCellValue('L1', 'Estado')
+            ->setCellValue('M1', 'Municipio')
+            ->setCellValue('N1', 'Colonia');
 
 
 // Miscellaneous glyphs, UTF-8
@@ -49,6 +50,7 @@ while ($fila = $res -> fetch_assoc()) {
     $nombre=$fila['cl_nombre'];
 	$ape_pat=$fila['cl_ape_pat'];
 	$ape_mat=$fila['cl_ape_mat'];
+	$correo=$fila['cl_mail'];
 	$fec_nac=$fila['cl_fec_nac'];
 	$lug_nac=$fila['cl_lug_nac'];
 	$sexo=$fila['cl_sexo'];
@@ -73,22 +75,24 @@ while ($fila = $res -> fetch_assoc()) {
 	$k="K".$celda;
 	$l="L".$celda;
 	$m="M".$celda;
+	$n="A".$celda;
 
 
 	$objPHPExcel->getActiveSheet(0)
             	->setCellValue($a, $id_cliente)
             	->setCellValue($b, $nombre)
             	->setCellValue($c, $ape_pat)
-            	->setCellValue($d, $ape_mat)
-				->setCellValue($e, $fec_nac)
-				->setCellValue($f, $lug_nac)
-				->setCellValue($g, $sexo)
-				->setCellValue($h, $rfc)
-				->setCellValue($i, $curp)
-				->setCellValue($j, $codigo)
-				->setCellValue($k, $estado)
-				->setCellValue($l, $municipio)
-				->setCellValue($m, $colonia);
+				->setCellValue($d, $ape_mat)
+				->setCellValue($e, $correo)
+				->setCellValue($f, $fec_nac)
+				->setCellValue($g, $lug_nac)
+				->setCellValue($h, $sexo)
+				->setCellValue($i, $rfc)
+				->setCellValue($j, $curp)
+				->setCellValue($k, $codigo)
+				->setCellValue($l, $estado)
+				->setCellValue($m, $municipio)
+				->setCellValue($n, $colonia);
 
 	$celda++;}
 // Rename worksheet

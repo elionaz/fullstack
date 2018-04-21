@@ -40,6 +40,13 @@
             </div>
 
             <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">E-mail</label>  
+                <div class="col-md-8">
+                    <input id="mail-user" name="mail_user" type="email" placeholder="Ingrese su correo clectronico" class="form-control input-md" required>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label class="col-md-4 control-label" for="textinput">Fecha de Nacimiento</label>  
                 <div class="col-md-8">
                     <input id="nac_user" name="nac_user" type="date" class="form-control input-md" required>
