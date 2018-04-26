@@ -1,10 +1,10 @@
 <?php
 
-namespace AppBundle\Entity;  
+namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use AppBundle\Form\UserInfoType;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * UserInfo
@@ -12,15 +12,12 @@ use AppBundle\Form\UserInfoType;
  * @ORM\Table(name="user_info")
  * @ORM\Entity
  */
-class UserInfo
-{
-    
-    public function __construct() 
-    {
+class UserInfo {
+
+    public function __construct() {
         $this->setCreatedAt(new \DateTime());
-    }  
-    
-    
+    }
+
     /**
      * @var integer
      *
@@ -32,56 +29,70 @@ class UserInfo
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\NotNull()     
      * @ORM\Column(name="first_name", type="string", length=255, nullable=false)
      */
     private $firstName;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\NotNull()     
      * @ORM\Column(name="first_surname", type="string", length=255, nullable=false)
      */
     private $firstSurname;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\NotNull()   
      * @ORM\Column(name="second_surname", type="string", length=255, nullable=false)
      */
     private $secondSurname;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
+     * @Assert\Email(
+     *     message = "El correo '{{ value }}' no es valido.",
+     *     checkMX = true
+     * )
      */
     private $email;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank()
+     * @Assert\NotNull() 
      * @ORM\Column(name="date_of_birth", type="date", nullable=false)
      */
     private $dateOfBirth;
 
     /**
-     * @var string
-     *
+     * @var string  
+     * @Assert\NotBlank()
+     * @Assert\NotNull()    
      * @ORM\Column(name="place_of_birth", type="string", length=255, nullable=false)
      */
     private $placeOfBirth;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\NotNull() 
      * @ORM\Column(name="gender", type="string", length=1, nullable=false)
      */
     private $gender = '1';
 
     /**
-     * @var string
+     * @var string 
      *
+     * @Assert\Type(
+     *     type="integer",
+     *     message="El valor {{ value }} no es un codigo postal valido, requerido: {{ type }}."
+     * )
      * @ORM\Column(name="post_code", type="string", length=255, nullable=false)
      */
     private $postCode;
@@ -107,8 +118,6 @@ class UserInfo
      */
     private $createdAt;
 
-
-
     /**
      * Set firstName
      *
@@ -118,7 +127,7 @@ class UserInfo
      */
     public function setFirstName($firstName)
     {
-        $this->firstName = $firstName;    
+        $this->firstName = $firstName;
         return $this;
     }
 
@@ -141,7 +150,7 @@ class UserInfo
      */
     public function setFirstSurname($firstSurname)
     {
-        $this->firstSurname = $firstSurname;    
+        $this->firstSurname = $firstSurname;
         return $this;
     }
 
@@ -164,7 +173,7 @@ class UserInfo
      */
     public function setSecondSurname($secondSurname)
     {
-        $this->secondSurname = $secondSurname;    
+        $this->secondSurname = $secondSurname;
         return $this;
     }
 
@@ -187,7 +196,7 @@ class UserInfo
      */
     public function setEmail($email)
     {
-        $this->email = $email;    
+        $this->email = $email;
         return $this;
     }
 
@@ -210,7 +219,7 @@ class UserInfo
      */
     public function setDateOfBirth($dateOfBirth)
     {
-        $this->dateOfBirth = $dateOfBirth;    
+        $this->dateOfBirth = $dateOfBirth;
         return $this;
     }
 
@@ -233,7 +242,7 @@ class UserInfo
      */
     public function setPlaceOfBirth($placeOfBirth)
     {
-        $this->placeOfBirth = $placeOfBirth;    
+        $this->placeOfBirth = $placeOfBirth;
         return $this;
     }
 
@@ -244,8 +253,8 @@ class UserInfo
      */
     public function getPlaceOfBirth()
     {     
-        return $this->placeOfBirth;        
-    }   
+        return $this->placeOfBirth;
+    }
 
     /**
      * Set gender
@@ -256,7 +265,7 @@ class UserInfo
      */
     public function setGender($gender)
     {
-        $this->gender = $gender;    
+        $this->gender = $gender;
         return $this;
     }
 
@@ -279,7 +288,7 @@ class UserInfo
      */
     public function setPostCode($postCode)
     {
-        $this->postCode = $postCode;    
+        $this->postCode = $postCode;
         return $this;
     }
 
@@ -302,7 +311,7 @@ class UserInfo
      */
     public function setRfc($rfc)
     {
-        $this->rfc = $rfc;    
+        $this->rfc = $rfc;
         return $this;
     }
 
@@ -325,7 +334,7 @@ class UserInfo
      */
     public function setCurp($curp)
     {
-        $this->curp = $curp;    
+        $this->curp = $curp;
         return $this;
     }
 
@@ -349,7 +358,7 @@ class UserInfo
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
-    
+
         return $this;
     }
 
@@ -372,9 +381,8 @@ class UserInfo
     {
         return $this->id;
     }
-    
-    
-     /**
+
+    /**
      * Get getFullName 
      *
      * @return string
@@ -384,8 +392,8 @@ class UserInfo
         $sFullName = $this->getFirstName()." ".$this->getFirstSurname(). " ".$this->getSecondSurname();
         return $sFullName;
     }
-    
-     /**
+
+    /**
      * Get NameplaceOfBirth 
      *
      * @return string
@@ -395,8 +403,7 @@ class UserInfo
         $key = $this->placeOfBirth;
         $oUserInfoType = new UserInfoType();
         $aEntities =  array_flip($oUserInfoType->getEntities());        
-        return $aEntities[$key];      
+        return $aEntities[$key];
     }
-    
-  
+
 }
