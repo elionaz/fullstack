@@ -402,7 +402,7 @@ class UserInfo {
     {     
         $key = $this->placeOfBirth;
         $oUserInfoType = new UserInfoType();
-        $aEntities =  array_flip($oUserInfoType->getEntities());        
+        $aEntities =  array_flip($oUserInfoType->getEntitiesList());        
         return $aEntities[$key];
     }
 
