@@ -8,9 +8,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Entity\UserInfo;
-use AppBundle\CurpRfc\CurpRfc;
 
-class DefaultController extends Controller
+
+class DefaultController extends Controller 
 {
 
     private $customerService;
@@ -41,7 +41,7 @@ class DefaultController extends Controller
         $form->handleRequest($request);
         if ($form->isValid() && $form->isSubmitted()) 
         {
-            $data = $form->getData(); 
+            $data = $form->getData();
             $aResult = $this->get('service.curprfc')->processRequestCurpRfc($data);
             $data->setRfc($aResult[0]['RFC']);
             $data->setCurp($aResult[1]['CURP']);
@@ -51,6 +51,18 @@ class DefaultController extends Controller
             return $this->redirectToRoute('customer_new');
         }
         return $this->render('customer/new.html.twig', array('customer' => $customer, 'form' => $form->createView()));
+    }
+
+    /**
+     * @Route("/admin/download/csv",name="admin_download_csv")
+     * @Method({"GET"})
+     */
+    public function generateCsvAction() 
+    {
+        $oCustomers = $this->customerService->getAllitem();
+        $response = $this->getDoctrine()->getManager()->getRepository('AppBundle:UserInfo')->generateCsv($oCustomers);
+        return $response;
+
     }
 
 }
