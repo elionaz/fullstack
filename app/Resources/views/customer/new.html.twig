@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="widget alert alert-info adjusted">
+        <i class="cus-exclamation"></i>
+        <strong>Nuevo cliente</strong>
+    </div>
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <form action="{{ path('customer_new') }}" name="appbundle_mdproduct" method="post" enctype="multipart/form-data">
+
+        {% if form.vars.errors.form.getErrors(true)|length>0 %}
+            <div class="widget alert alert-danger adjusted">
+                Algunos campos son requeridos 
+            </div>               
+        {% endif %}
+
+        <div class="row">
+            <div class="form-group col-xs-5 col-lg-4">
+                <label for="code">Nombre(s) *</label>                
+                {{ form_errors(form.firstName) }}
+                {{ form_widget(form.firstName,{'attr': {'class': 'form-control'}}) }} 
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-5 col-lg-4">
+                <label for="code">Primer apellido *</label>             
+                {{ form_errors(form.firstSurname) }}
+                {{ form_widget(form.firstSurname,{'attr': {'class': 'form-control'}}) }}  
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-5 col-lg-4">
+                <label for="code">Segundo apellido *</label>
+                {{ form_errors(form.secondSurname) }}
+                {{ form_widget(form.secondSurname,{'attr': {'class': 'form-control'}}) }}  
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-5 col-lg-4">
+                <label for="code">Fecha de nacimiento *</label>
+                {{ form_widget(form.dateOfBirth.year,{'attr': {'class': 'form-control'}}) }} 
+                {{ form_widget(form.dateOfBirth.month,{'attr': {'class': 'form-control'}}) }}   
+                {{ form_widget(form.dateOfBirth.day,{'attr': {'class': 'form-control'}}) }} 
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="form-group col-xs-5 col-lg-4">
+                <label for="code">Email *</label>
+                {{ form_errors(form.email) }}
+                {{ form_widget(form.email,{'attr': {'class': 'form-control'}}) }}  
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="form-group col-xs-5 col-lg-4">
+                <label for="code">Codigo postal</label>
+                {{ form_widget(form.postCode,{'attr': {'class': 'form-control'}}) }}  
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-5 col-lg-4">
+                <label for="code">Lugar de nacimiento *</label>
+                {{ form_errors(form.placeOfBirth) }}
+                {{ form_widget(form.placeOfBirth,{'attr': {'class': 'form-control'}}) }}  
+            </div>
+        </div>        
+
+        <div class="row">
+            <div class="form-group col-xs-5 col-lg-4">
+                <label for="code">Genero *</label>
+                {{ form_errors(form.gender) }}
+                {{ form_widget(form.gender,{'attr': {'class': 'form-control'}}) }}  
+            </div>
+        </div>
+
+
+        {{ form_row(form._token) }}
+
+        <div class="form-group no-border">            
+            <input type="button" onclick="submitForm();" value="Guardar" class="btn btn-primary" />  
+            <a href="{{ path('customer_list') }}" class="btn btn-success" role="button">Lista clientes</a>                  
+        </div>
+    </form>
+
+    <script>
+        function submitForm() {
+            if (confirm("Agregar nuevo cliente?"))
+            {
+                appbundle_mdproduct.submit();
+            }
+        }
+    </script>
+
+{% endblock %}
