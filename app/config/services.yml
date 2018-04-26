@@ -5,6 +5,9 @@ parameters:
 
 services:
     # default configuration for services in *this*  file
+    service.curprfc:
+        class: AppBundle\Service\CurpRfcService
+        arguments: [oCustomer]   
     app.customerfactory:
         class: AppBundle\Service\CustomerServiceFactory
         arguments: [ "@doctrine.orm.entity_manager", "@form.factory", "@request_stack"]

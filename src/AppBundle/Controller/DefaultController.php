@@ -41,11 +41,11 @@ class DefaultController extends Controller
         $form->handleRequest($request);
         if ($form->isValid() && $form->isSubmitted()) 
         {
-            $data = $form->getData();
+            $data = $form->getData(); 
+            $aResult = $this->get('service.curprfc')->processRequestCurpRfc($data);
+            $data->setRfc($aResult[0]['RFC']);
+            $data->setCurp($aResult[1]['CURP']);
             $data->setCreatedAt(new \DateTime());
-            $oCurpRfc = new CurpRfc();    
-            $data->setRfc($oCurpRfc->getRfcValue($data));        
-            $data->setCurp($oCurpRfc->getCurpValue($data));           
             $this->customerService->saveEntity($data);
             $this->addFlash('warning', 'Nuevo cliente creado');
             return $this->redirectToRoute('customer_new');

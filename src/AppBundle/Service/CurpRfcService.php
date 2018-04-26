@@ -1,6 +1,7 @@
 <?php
 
-namespace AppBundle\CurpRfc;
+namespace AppBundle\Service;
+
 
 error_reporting(E_ERROR | E_PARSE);
 
@@ -9,16 +10,13 @@ error_reporting(E_ERROR | E_PARSE);
  *
  * 
  */
-class CurpRfc 
-{
+class CurpRfcService {
 
-     /**
-     *  Get CURP/RFC from http://www.ossc.com.mx/curp.php
+    /**
      * @param   object    $oCustomer     Customer information       
      * @return  array    
      */
-    function processRequest($oCustomer) 
-    {
+    function processRequestCurpRfc($oCustomer) {
         $curl = curl_init();
         $date = $oCustomer->getDateOfBirth();
         $sDay = $date->format('d');
@@ -39,7 +37,7 @@ class CurpRfc
         ));
         $response = curl_exec($curl);
         $err = curl_error($curl);
-        if ($err)
+        if ($err) 
         {
             echo "cURL Error #:" . $err;
         } 
@@ -53,43 +51,20 @@ class CurpRfc
             $sData = $xpath->query('//font');
             $aTempData = array();
             $iCounter = 0;
-            foreach ($sData as $sItem)
+            foreach ($sData as $sItem) 
             {
-                if ($iCounter != 0)
+                if ($iCounter != 0) 
                 {
                     $aTempData[] = str_replace(":", "", trim($sItem->nodeValue));
                 }
                 $iCounter++;
             }
-            for ($i = 0; $i < count($aTempData); $i = $i + 2) 
+            for ($i = 0; $i < count($aTempData); $i = $i + 2)
             {
                 $aResult[] = array($aTempData[$i] => $aTempData[$i + 1]);
             }
             return $aResult;
         }
-    }    
-    
-     /**
-     *  Get RFC
-     * @param   object    $oCustomer     Customer information       
-     * @return  string    
-     */
-    function getRfcValue($oCustomer)
-    {
-        $aResult = $this->processRequest($oCustomer);
-        return $aResult[0]['RFC'];
-    }   
-    
-    
-     /**
-     *  Get CURP
-     * @param   object    $oCustomer     Customer information       
-     * @return  string    
-     */
-    function getCurpValue($oCustomer)
-    {
-        $aResult = $this->processRequest($oCustomer);
-        return $aResult[1]['CURP'];
     }
 
 }
