@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Entity\UserInfo;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
 class DefaultController extends Controller 
@@ -22,8 +23,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("customer", name="customer_list")
-     * @Method({"GET"})
+     * @Route("/customer/list", name="customer_list")    
      */
     public function customerAction()
     {
@@ -32,7 +32,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/customer/new",name="customer_new")
+     * @Route("/",name="customer_new")
      */
     public function newAction(Request $request)
     {
@@ -56,13 +56,26 @@ class DefaultController extends Controller
     /**
      * @Route("/admin/download/csv",name="admin_download_csv")
      * @Method({"GET"})
+     * @Security("has_role('ROLE_USER')")
      */
     public function generateCsvAction() 
     {
         $oCustomers = $this->customerService->getAllitem();
-        $response = $this->getDoctrine()->getManager()->getRepository('AppBundle:UserInfo')->generateCsv($oCustomers);
+        $response = $this->get('service.csv')->generateCsv($oCustomers);
         return $response;
 
+    }
+    
+    
+    
+    /**
+     * @Route("/logout", name="logout")
+     */
+     public function logoutAction()
+     {
+        $this->get('security.token_storage')->setToken(null);
+        $this->get('request')->getSession()->invalidate();
+        return $this->redirectToRoute('customer_new');        
     }
 
 }
