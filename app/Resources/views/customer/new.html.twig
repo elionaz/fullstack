@@ -2,11 +2,6 @@
 
 {% block body %}
 
-    <div class="widget alert alert-info adjusted">
-        <i class="cus-exclamation"></i>
-        <strong>Nuevo cliente</strong>
-    </div>
-
     {% for label, messages in app.flashes %}
         {% for message in messages %}
             <div class="alert alert-{{ label }}">
@@ -14,6 +9,24 @@
             </div>
         {% endfor %}
     {% endfor %}
+
+   {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <div class="widget alert alert-info adjusted">
+            <h4>Usuario autenticado como <strong>{{ app.user.username }}</strong></h4>
+            <a href="{{ path('logout') }}"><i class="icon-off"></i>Logout</a>   
+        </div>        
+    {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <div class="widget alert alert-danger adjusted">
+            <strong>Usuario logueado via cookie o remembered</strong>
+        </div>         
+    {% elseif is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+        <div class="widget alert alert-danger adjusted">
+            <strong>Estas como Usuario anonimo o invitado</strong>
+        </div>  
+    {% endif %}
+
+
+    <a href="{{ path('admin_download_csv') }}" class="btn btn-danger" role="button">Descargar Csv</a><br><br>
 
     <form action="{{ path('customer_new') }}" name="appbundle_mdproduct" method="post" enctype="multipart/form-data">
 

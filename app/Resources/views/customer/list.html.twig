@@ -1,11 +1,6 @@
 {% extends "base.html.twig"%}
 
 {% block body %}
-    
-    <div class="widget alert alert-info adjusted">
-        <i class="cus-exclamation"></i>
-        <strong>Lista de clientes </strong>
-    </div>
 
     {% for label, messages in app.flashes %}
         {% for message in messages %}
@@ -15,8 +10,24 @@
         {% endfor %}
     {% endfor %}
 
-    <a href="{{ path('admin_download_csv') }}" class="btn btn-success" role="button">Descargar Csv</a><br><br>
 
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <div class="widget alert alert-info adjusted">
+            <h4>Usuario autenticado como <strong>{{ app.user.username }}</strong></h4>
+            <a href="{{ path('logout') }}"><i class="icon-off"></i>Logout</a>   
+        </div>       
+    {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <div class="widget alert alert-danger adjusted">
+            <strong>Usuario logueado via cookie o remembered</strong>
+        </div>         
+    {% elseif is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+        <div class="widget alert alert-danger adjusted">
+            <strong>Estas como Usuario anonimo o invitado</strong>
+        </div>  
+    {% endif %}
+
+    <a href="{{ path('admin_download_csv') }}" class="btn btn-danger" role="button">Descargar Csv</a><br><br>
+    
     {% if customers is not empty %}  
         <table id="table-list"  class="table table-striped table-bordered responsive table-striped table-hover datatable" >
             <thead>
@@ -53,13 +64,13 @@
 
     <script>
 
-        $(document).ready(function () 
+        $(document).ready(function ()
         {
             $('#table-list').DataTable(
-            {
-                "pageLength": 5,
-                "aaSorting": [[0, 'asc']]
-            });
+                    {
+                        "pageLength": 5,
+                        "aaSorting": [[0, 'asc']]
+                    });
         });
     </script>
 
