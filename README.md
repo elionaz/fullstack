@@ -1,7 +1,7 @@
 # Instalation
 
 # 1. Clone or download zip folder: 
-	[a link](https://github.com/eduardoguerrero/fullstack.git)
+[a link](https://github.com/eduardoguerrero/fullstack.git)
 
 # 2. Change to folder project:
         ```
