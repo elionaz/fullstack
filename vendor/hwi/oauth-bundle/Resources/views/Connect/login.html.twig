@@ -1,0 +1,50 @@
+{% extends 'HWIOAuthBundle::layout.html.twig' %}
+
+{% block hwi_oauth_content %}
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
+    <!-- font awesome css -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <body style="text-align:center; padding:1em">
+        <br><br><br><br>
+        <label>Descargar Archivo</label>
+        <br><br>
+        <div class="btn-group">
+            <a class='btn btn-danger disabled'><i class="fa fa-google-plus" style="width:16px; height:20px"></i></a>
+            <!--a class='btn btn-danger' href='#' style="width:12em;">
+                Autenticar con Google
+            </a-->
+            {% if error is defined and error %}
+                <span>{{ error }}</span>
+            {% endif %}
+            {% for owner in hwi_oauth_resource_owners() %}
+                <a class='btn btn-danger' href="{{ hwi_oauth_login_url(owner) }}">Autenticar con {{ owner | trans({}, 'HWIOAuthBundle') }}</a> <br />
+            {% endfor %}
+        </div>
+        <!--br /><br />
+        <div class="btn-group">
+                <a class='btn btn-primary disabled'><i class="fa fa-facebook" style="width:16px; height:20px"></i></a>
+                <a class='btn btn-primary ' href='' style="width:12em"> Sign in with Facebook</a>
+        </div-->	
+        <!--br /><br />
+        <div class="btn-group">
+                <a class='btn btn-info disabled'><i class="fa fa-twitter" style="width:16px; height:20px"></i></a>
+                <a class='btn btn-info ' href='' style="width:12em"> Sign in with Twitter</a>
+        </div>	
+        <br /><br /-->
+    </body>
+
+{% endblock hwi_oauth_content %}
+
+
+
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="{{asset('twbs/bootstrap/dist/css/bootstrap.min.css')}}" />
+            
+            <link rel="stylesheet" type="text/css" href="{{asset('twbs/bootstrap/dist/css/bootstrap-theme.min.css')}}" />   
+            
+            <link rel="stylesheet" type="text/css" href="{{asset('twbs/bootstrap/dist/css/jquery.dataTables.min.css')}}" />
+
+            <link rel="stylesheet" href="{{ asset('twbs/bootstrap/dist/css/datepicker.css?v=1') }}">
+            <!-- full calander css -->
+            <link rel="stylesheet" href="{{ asset('twbs/bootstrap/dist/css/fullcalendar.css?v=1') }}">       
+
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+
+        <div class="container">
+
+            <br>
+            <!--nav class="navbar navbar-expand-sm bg-info navbar-dark">
+              
+                <a class="navbar-brand" href="#">Logo</a>
+
+                
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link 2</a>
+                    </li>
+
+                  
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Dropdown link
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Link 1</a>
+                            <a class="dropdown-item" href="#">Link 2</a>
+                            <a class="dropdown-item" href="#">Link 3</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav-->
+            {% block javascripts %}      
+
+                <script type="text/javascript" src="{{asset('twbs/bootstrap/js/tests/vendor/jquery.min.js')}}"></script>
+                <!-- REQUIRED: Bootstrap Date Picker -->
+                <script type="text/javascript" src="{{asset('twbs/bootstrap/dist/js/jquery.dataTables.min.js')}}"></script>               
+
+                <script type="text/javascript" src="{{asset('twbs/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+
+                <script  type="text/javascript" src="{{ asset('twbs/bootstrap/dist/js/jquery.fullcalendar.min.js') }}"></script>     
+
+                <!-- REQUIRED: Bootstrap Color Picker -->
+                <script  type="text/javascript" src="{{ asset('twbs/bootstrap/dist/js/bootstrap-colorpicker.min.js') }}"></script>
+
+                <!-- REQUIRED: Bootstrap Time Picker -->
+                <script  type="text/javascript" src="{{ asset('twbs/bootstrap/dist/js/bootstrap-timepicker.min.js') }}"></script> 
+            {% endblock %}
+
+        {% block body %}{% endblock %}
+
+    </div>
+</body>
+
+</html>
