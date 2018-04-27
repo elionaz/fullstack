@@ -21,7 +21,7 @@ Go to this file and update the values
 /fullstack-master/app/config/parameters.yml
 ```
 
-# 5. Setting Database:
+# 5. Setting Database
 Create a database into MySQL with the same name setted in the step #4 and execute:
 ```
 $cd fullstack-master
@@ -29,7 +29,7 @@ $php bin/console doctrine:schema:update --force
  ```
  Check if tables have been created
 
-# 6. Open the navigator and surf in these url
+# 6. Open the navigator and surf in these URLs
 Add a new customer: 
 [http://127.0.0.1:8080/fullstack-master/web/app_dev.php/](http://127.0.0.1:8080/fullstack-master/web/app_dev.php/)
 
