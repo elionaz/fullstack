@@ -15,20 +15,24 @@ class DefaultController extends Controller
 {
 
     private $customerService;
-
+    
+    /**
+     * Get Service container   
+     */
     public function setContainer(ContainerInterface $container = null)
     {
         parent::setContainer($container);
+        
         $this->customerService = $container->get("app.customerservice");
     }
 
     /**
-     * @Route("/customer/list", name="customer_list")    
+     * @Route("/customer/list", name="customer_list")
      */
     public function customerAction()
     {
-        $customers = $this->customerService->getAllitem();
-        return $this->render('customer/list.html.twig', array('customers' => $customers));
+        $oCustomer = $this->customerService->getAllitem();
+        return $this->render('customer/list.html.twig', array('customers' => $oCustomer));
     }
 
     /**
@@ -41,12 +45,12 @@ class DefaultController extends Controller
         $form->handleRequest($request);
         if ($form->isValid() && $form->isSubmitted()) 
         {
-            $data = $form->getData();
-            $aResult = $this->get('service.curprfc')->processRequestCurpRfc($data);
-            $data->setRfc($aResult[0]['RFC']);
-            $data->setCurp($aResult[1]['CURP']);
-            $data->setCreatedAt(new \DateTime());
-            $this->customerService->saveEntity($data);
+            $oCustomer = $form->getData();
+            $aResult = $this->get('service.curprfc')->processRequestCurpRfc($oCustomer);
+            $oCustomer->setRfc($aResult[0]['RFC']);
+            $oCustomer->setCurp($aResult[1]['CURP']);
+            $oCustomer->setCreatedAt(new \DateTime());
+            $this->customerService->saveEntity($oCustomer);
             $this->addFlash('warning', 'Nuevo cliente creado');
             return $this->redirectToRoute('customer_new');
         }
@@ -61,11 +65,10 @@ class DefaultController extends Controller
     public function generateCsvAction() 
     {
         $oCustomers = $this->customerService->getAllitem();
-        $response = $this->get('service.csv')->generateCsv($oCustomers);
-        return $response;
+        $csvResponse = $this->get('service.csv')->generateCsv($oCustomers);
+        return $csvResponse;
 
-    }
-    
+    }    
     
     
     /**
