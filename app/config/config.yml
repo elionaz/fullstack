@@ -76,4 +76,28 @@ fos_user:
     user_class: AppBundle\Entity\User
     from_email:
         address: "yourapp@yourapp.com"
-        sender_name: "Demo String"   
+        sender_name: "Demo String"
+        
+hwi_oauth:
+    connect:
+        confirmation: true
+        registration_form:  fos_user.registration.form.factory
+    firewall_names:  [main]
+    fosub:
+      username_iterations:   30
+      properties:
+          #facebook:  facebookID
+          google:  googleID     
+    resource_owners:
+        # Facebook Access
+        #facebook:
+            #type:                facebook
+            #client_id:           1651819745131124
+            #client_secret:       4b1f5f4bf1b262abf877b2eeb44aafd1
+            #scope:               "email"
+        # Google Access
+        google:
+            type:                google
+            client_id:           111837388892-9jpsdu2qojkntt70cqrr6jn2nvglhvcq.apps.googleusercontent.com
+            client_secret:       914WCdAOn5W9Yvr_vj_bLLBg
+            scope:               "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
