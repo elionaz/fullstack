@@ -31,7 +31,7 @@ class GetCsvService
         });
         $response->setStatusCode(200);
         $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
-        $response->headers->set('Content-Disposition', "attachment; filename='{$sFileName}'");
+        $response->headers->set('Content-Disposition', "attachment; filename={$sFileName}");
         return $response;
     }
 
