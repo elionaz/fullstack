@@ -5,6 +5,9 @@ parameters:
 
 services:
     # default configuration for services in *this*  file
+    service.csv:
+        class: AppBundle\Service\GetCsvService
+        arguments: [oCustomer] 
     service.curprfc:
         class: AppBundle\Service\CurpRfcService
         arguments: [oCustomer]   

@@ -1,14 +1,17 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AppBundle\Service;
 
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class UserInfoRepository extends EntityRepository
+class GetCsvService
 {
-
-    public function generateCsv($oCustomer)
+    
+     /**
+     * @param   object    $oCustomer     Customer information       
+     * @return  StreamedResponse    
+     */
+     public function generateCsv($oCustomer)
     {
         $response = new StreamedResponse();
         $sFileName = 'export_'.date('Y_m_d_h_m_s').'.csv';
