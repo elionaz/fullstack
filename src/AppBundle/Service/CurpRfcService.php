@@ -10,13 +10,15 @@ error_reporting(E_ERROR | E_PARSE);
  *
  * 
  */
-class CurpRfcService {
+class CurpRfcService 
+{
 
     /**
      * @param   object    $oCustomer     Customer information       
      * @return  array    
      */
-    function processRequestCurpRfc($oCustomer) {
+    function processRequestCurpRfc($oCustomer) 
+    {
         $curl = curl_init();
         $date = $oCustomer->getDateOfBirth();
         $sDay = $date->format('d');
@@ -39,7 +41,7 @@ class CurpRfcService {
         $err = curl_error($curl);
         if ($err) 
         {
-            echo "cURL Error #:" . $err;
+            return array('status'=>'error','message'=>$err);           
         } 
             else 
         {

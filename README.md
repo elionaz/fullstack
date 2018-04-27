@@ -1,4 +1,6 @@
-# Instalation
+# Installation
+
+**CURP/RFC retrieved from http://www.ossc.com.mx/curp.php**
 
 # 1. Clone or download zip folder
 [https://github.com/eduardoguerrero/fullstack.git](https://github.com/eduardoguerrero/fullstack.git)
