@@ -1,21 +1,22 @@
 # Instalation
 
-# 1. Clone or download zip folder: 
+# 1. Clone or download zip folder
 [https://github.com/eduardoguerrero/fullstack.git](https://github.com/eduardoguerrero/fullstack.git)
 
-# 2. Change to folder project:
-        ```
-	$cd fullstack-master
-        ```
-# 3. Update dependencies:
+# 2. Change to folder project
+```
+$cd fullstack-master
+```
+# 3. Update dependencies
 ```
 $composer update
 ```   
 
-Please check below link if you don't have installed composer: 
+Install composer: 
 [https://getcomposer.org/doc/00-intro.md](https://getcomposer.org/doc/00-intro.md)
 
 # 4. Update MySQL info(user,password, database name)
+Go to this file and update the values
 ```
 /fullstack-master/app/config/parameters.yml
 ```
@@ -28,8 +29,9 @@ $php bin/console doctrine:schema:update --force
  ```
  Check if tables have been created
 
-# 6. Open the navigator and go to the link below if you want to add a new customer:
+# 6. Open the navigator and surf in these url
+Add a new customer: 
 [http://127.0.0.1:8080/fullstack-master/web/app_dev.php/](http://127.0.0.1:8080/fullstack-master/web/app_dev.php/)
 
-List customers:
+List customers: 
 [http://127.0.0.1:8080/fullstack/web/app_dev.php/customer/list](http://127.0.0.1:8080/fullstack/web/app_dev.php/customer/list)
