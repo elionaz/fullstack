@@ -41,7 +41,7 @@ Add a new customer:
 [http://127.0.0.1:8080/fullstack-master/web/app_dev.php/](http://127.0.0.1:8080/fullstack-master/web/app_dev.php/)
 
 List customers: 
-[http://127.0.0.1:8080/fullstack-master/web/app_dev.php/customer/list](http://127.0.0.1:8080/fullstack/web/app_dev.php/customer/list)
+[http://127.0.0.1:8080/fullstack-master/web/app_dev.php/customer/list](http://127.0.0.1:8080/fullstack-master/web/app_dev.php/customer/list)
 
 
 # 7. Screenshots
